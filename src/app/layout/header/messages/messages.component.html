@@ -1,0 +1,31 @@
+<button class="message-button" mat-mini-fab [matMenuTriggerFor]="email">
+  <mat-icon [matBadge]="1" matBadgeColor="accent" class="message-button__icon"
+    >mail_outline</mat-icon
+  >
+</button>
+
+<mat-menu #email="matMenu" xPosition="before">
+  <div class="message-menu-header">
+    <h4 class="message-menu-header__title">Mensagens</h4>
+    <p class="message-menu-header__subtitle">1 Nova Mensagem</p>
+  </div>
+
+  <div class="message-wrapper">
+    <div class="message-wrapper__icon-wrapper">
+      <button class="message-wrapper__icon green" mat-mini-fab>CP</button>
+      <span class="message-wrapper__time">27/10</span>
+    </div>
+    <div class="message-content">
+      <span class="message-content__user">Chapter - Outubro/22</span>
+      <span class="message-content__message"
+        >Performance e gestão de Estado em Aplicações Angular
+      </span>
+    </div>
+  </div>
+</mat-menu>
+
+<mat-menu #none="matMenu" xPosition="before">
+  <div class="message-menu-header">
+    <h4 class="message-menu-header__title">Nenhuma Mensagem</h4>
+  </div>
+</mat-menu>

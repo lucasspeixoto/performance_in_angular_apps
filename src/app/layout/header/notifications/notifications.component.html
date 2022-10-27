@@ -1,0 +1,25 @@
+<button class="message-button" mat-mini-fab [matMenuTriggerFor]="email">
+  <mat-icon [matBadge]="1" matBadgeColor="warn" class="message-button__icon"
+    >notifications_none</mat-icon
+  >
+</button>
+
+<mat-menu #email="matMenu" xPosition="before">
+  <div class="message-menu-header">
+    <h4 class="message-menu-header__title">Notificações</h4>
+    <p class="message-menu-header__subtitle">1 Nova Notificação</p>
+  </div>
+
+  <div class="message-wrapper">
+    <div class="message-content">
+      <span class="message-content__user">É Hoje!!!!</span>
+      <span class="message-content__message">Hoje é dia de Chapter 😁</span>
+    </div>
+  </div>
+</mat-menu>
+
+<mat-menu #none="matMenu" xPosition="before">
+  <div class="message-menu-header">
+    <h4 class="message-menu-header__title">Nenhuma Mensagem</h4>
+  </div>
+</mat-menu>
