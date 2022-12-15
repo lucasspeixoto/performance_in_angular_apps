@@ -1,6 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  first,
+  Observable,
+  Subject,
+  Subscription,
+  take,
+  takeUntil,
+} from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Product, ProductItem } from '../../models/product.model';
 
@@ -9,7 +16,7 @@ import { Product, ProductItem } from '../../models/product.model';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss'],
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent {
   public pageTitle = 'Abordagem Comum';
 
   public displayedColumns: string[] = [
@@ -23,24 +30,17 @@ export class ProductComponent implements OnInit {
 
   public products!: ProductItem[];
 
-  public products$!: Observable<Product>;
+  public product$: Observable<Product> = this.httpClient.get<Product>(
+    `${this.baseUrl}/products`
+  );
 
   constructor(private readonly httpClient: HttpClient) {}
 
-  ngOnInit(): void {
-    this.getProductList();
-  }
-
-  public getProductList(): void {
-    this.products$ = this.httpClient.get<Product>(`${this.baseUrl}/products`);
-  }
-
   public getFirstName(name: string): string {
-    console.log('Executando Método!');
     return name.split(' ')[0];
   }
 
   public updateTitle(): void {
-    this.pageTitle = `${this.pageTitle}.`
+    this.pageTitle = `${this.pageTitle}.`;
   }
 }

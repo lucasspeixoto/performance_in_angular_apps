@@ -22,15 +22,14 @@ export class ProductEffects {
     () =>
       this.actions$.pipe(
         ofType(ProductActions.LoadProduct),
-        withLatestFrom(this._store.select(getProductItems)),
+        withLatestFrom(this.store.select(getProductItems)),
         switchMap(([, productItems]) => {
-          console.log(productItems);
           if (!productItems) {
-            return this._httpClient
+            return this.httpClient
               .get<Product>(`${this.baseUrl}/products`)
               .pipe(
                 tap((data) => {
-                  this._store.dispatch(
+                  this.store.dispatch(
                     ProductActions.SetProduct({
                       payload: data,
                     })
@@ -48,7 +47,7 @@ export class ProductEffects {
 
   constructor(
     private readonly actions$: Actions,
-    private readonly _store: Store<fromApp.AppState>,
-    private readonly _httpClient: HttpClient
+    private readonly store: Store<fromApp.AppState>,
+    private readonly httpClient: HttpClient
   ) {}
 }

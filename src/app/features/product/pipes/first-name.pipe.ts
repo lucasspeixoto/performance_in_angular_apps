@@ -5,7 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FirstNamePipe implements PipeTransform {
   transform(name: string): string {
-    console.log('Executado Pipe!');
     return name.split(' ')[0];
   }
 }
